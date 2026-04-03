@@ -8,4 +8,9 @@ describe('router', () => {
     expect(routeConfig).toContain('workspace');
     expect(routeConfig).toContain('docs');
   });
+
+  it('includes overview route label', () => {
+    const routeConfig = JSON.stringify(router.routes);
+    expect(routeConfig).toContain('Overview');
+  });
 });

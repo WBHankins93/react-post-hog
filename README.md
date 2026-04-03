@@ -42,6 +42,7 @@ Repository now includes:
 - baseline ESLint configuration
 - CI workflow for lint/typecheck/test/build
 - app shell with route scaffolding (overview/workspace/docs)
+- keyboard-first command palette foundation (⌘/Ctrl + K)
 
 ## Stack (target)
 
