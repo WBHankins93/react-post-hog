@@ -33,6 +33,16 @@ The MVP ships when these 5 capabilities are complete:
 
 Non-goals are documented in [`docs/mvp-scope.md`](docs/mvp-scope.md).
 
+
+## Current implementation status
+
+Repository now includes:
+
+- Vite + React + TypeScript scaffold
+- baseline ESLint configuration
+- CI workflow for lint/typecheck/test/build
+- starter app placeholder while product shell is built
+
 ## Stack (target)
 
 ### Frontend
