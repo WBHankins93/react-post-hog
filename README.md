@@ -41,7 +41,7 @@ Repository now includes:
 - Vite + React + TypeScript scaffold
 - baseline ESLint configuration
 - CI workflow for lint/typecheck/test/build
-- starter app placeholder while product shell is built
+- app shell with route scaffolding (overview/workspace/docs)
 
 ## Stack (target)
 
