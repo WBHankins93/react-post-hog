@@ -43,6 +43,7 @@ Repository now includes:
 - CI workflow for lint/typecheck/test/build
 - app shell with route scaffolding (overview/workspace/docs)
 - keyboard-first command palette foundation (⌘/Ctrl + K)
+- workspace file tree + file viewer baseline
 
 ## Stack (target)
 

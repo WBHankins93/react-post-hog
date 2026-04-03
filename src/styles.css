@@ -168,3 +168,68 @@ p {
   letter-spacing: 0.02em;
   color: #b9caf7;
 }
+
+.workspace {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 1rem;
+}
+
+.workspace__panel {
+  border: 1px solid #232938;
+  border-radius: 10px;
+  padding: 1rem;
+  background: #0d121f;
+}
+
+.workspace__helper {
+  margin-bottom: 0.8rem;
+}
+
+.fileTree {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.fileTree__children {
+  list-style: none;
+  margin: 0.35rem 0 0.35rem 0.9rem;
+  padding: 0;
+  border-left: 1px dashed #2a3550;
+}
+
+.fileTree__item {
+  width: 100%;
+  text-align: left;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #d0d8ef;
+  border-radius: 8px;
+  padding: 0.35rem 0.45rem;
+  cursor: pointer;
+}
+
+.fileTree__item:hover {
+  border-color: #3c4f79;
+  background: #111a2e;
+}
+
+.fileTree__item--active {
+  border-color: #5a6ea3;
+  background: #141f37;
+}
+
+.fileTree__icon {
+  margin-right: 0.35rem;
+}
+
+.workspace__content {
+  margin: 0;
+  border: 1px solid #2a3550;
+  border-radius: 8px;
+  background: #0a101c;
+  padding: 0.75rem;
+  white-space: pre-wrap;
+  min-height: 220px;
+}
