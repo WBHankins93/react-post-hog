@@ -18,7 +18,7 @@ body {
 
 .shell {
   display: grid;
-  grid-template-columns: 260px 1fr;
+  grid-template-columns: minmax(92px, 260px) 1fr;
   min-height: 100vh;
 }
 
@@ -50,6 +50,19 @@ body {
   margin-top: 0.7rem;
   color: #95a1bc;
   font-size: 0.85rem;
+}
+
+.shell__sidebar--collapsed .shell__title {
+  font-size: 0.85rem;
+}
+
+.shell__sidebar--collapsed .shell__routeHint {
+  font-size: 0.75rem;
+}
+
+.shell__commandButton--ghost {
+  margin-top: 0.5rem;
+  background: transparent;
 }
 
 .shell__nav {

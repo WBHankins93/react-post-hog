@@ -1,15 +1,26 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { FileTree } from '../features/files/FileTree';
 import { collectFiles, FileNode, mockFileTree } from '../features/files/mockFileTree';
+import { loadWorkspaceState, saveWorkspaceState } from '../app/workspaceState';
 
 export function WorkspacePage() {
   const files = useMemo(() => collectFiles(mockFileTree), []);
-  const [selectedFileId, setSelectedFileId] = useState<string | null>(files[0]?.id ?? null);
+  const [selectedFileId, setSelectedFileId] = useState<string | null>(
+    () => loadWorkspaceState().selectedFileId ?? files[0]?.id ?? null,
+  );
 
   const selectedFile = useMemo(
     () => files.find((file) => file.id === selectedFileId) ?? null,
     [files, selectedFileId],
   );
+
+  useEffect(() => {
+    const currentState = loadWorkspaceState();
+    saveWorkspaceState({
+      ...currentState,
+      selectedFileId,
+    });
+  }, [selectedFileId]);
 
   function handleSelect(node: FileNode) {
     if (node.type === 'file') {
