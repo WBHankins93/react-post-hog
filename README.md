@@ -44,6 +44,7 @@ Repository now includes:
 - app shell with route scaffolding (overview/workspace/docs)
 - keyboard-first command palette foundation (⌘/Ctrl + K)
 - workspace file tree + file viewer baseline
+- local workspace persistence for route, selected file, and sidebar layout
 
 ## Stack (target)
 
