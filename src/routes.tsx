@@ -1,10 +1,10 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, type RouteObject } from 'react-router-dom';
 import { AppShell } from './app/AppShell';
 import { DocsPage } from './pages/DocsPage';
 import { OverviewPage } from './pages/OverviewPage';
 import { WorkspacePage } from './pages/WorkspacePage';
 
-export const router = createBrowserRouter([
+export const routes: RouteObject[] = [
   {
     path: '/',
     element: <AppShell />,
@@ -23,4 +23,8 @@ export const router = createBrowserRouter([
       },
     ],
   },
-]);
+];
+
+export function createAppRouter() {
+  return createBrowserRouter(routes);
+}
