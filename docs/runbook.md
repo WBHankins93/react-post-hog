@@ -1,19 +1,31 @@
 # Runbook
 
-## Local development (target state)
+## Local development
 
 ### Frontend
 
-- install dependencies
-- run local dev server
-- verify routes + command interactions
+```bash
+npm install
+cp .env.example .env
+npm run dev
+```
 
 ### Backend
 
-- create Python virtual environment
-- install dependencies
-- run FastAPI app
-- verify `/health`
+```bash
+cd backend
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env
+uvicorn app.main:app --reload
+```
+
+Verify backend health:
+
+```bash
+curl http://localhost:8000/health
+```
 
 ## Environment variables
 
@@ -56,3 +68,21 @@ If production issues occur:
 3. capture root cause in decision log/retrospective
 4. add preventive check/test if feasible
 
+
+
+## Deployment playbook
+
+### Frontend (Vercel)
+
+1. Import repository in Vercel.
+2. Keep defaults for Vite build (`npm run build`, output `dist`).
+3. Configure environment variable `VITE_API_BASE_URL` per environment:
+   - preview: preview backend URL
+   - production: production backend URL
+4. Ensure `vercel.json` rewrite is committed so SPA routes resolve.
+
+### Backend (Render)
+
+1. Create a new Web Service from `render.yaml` (Blueprint deploy).
+2. Set `BACKEND_CORS_ORIGINS` for each environment to frontend URL(s).
+3. Confirm `/health` and `/search?q=test` respond after deploy.

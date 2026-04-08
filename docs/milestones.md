@@ -39,7 +39,7 @@
 - backend indexing/search logic
 - frontend query integration
 
-## PR-009 — Deployment + environments
+## PR-009 — Deployment + environments ✅
 
 - frontend deployment
 - backend deployment
