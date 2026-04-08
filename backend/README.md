@@ -23,3 +23,10 @@ uvicorn app.main:app --reload
 cd backend
 PYTHONPATH=. pytest
 ```
+
+
+## Environment variables
+
+- `BACKEND_CORS_ORIGINS` — optional comma-separated origins for browser CORS.
+  - If omitted, local Vite development defaults are used.
+  - Example: `BACKEND_CORS_ORIGINS=https://app.example.com,https://preview.example.com`

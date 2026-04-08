@@ -48,6 +48,8 @@ Repository now includes:
 - markdown docs rendering baseline with typography and code block styling
 - FastAPI backend scaffold with `/health` and `/search` endpoints
 - frontend search UI integrated with backend query results
+- deployment blueprints for Vercel (frontend) and Render (backend)
+- environment variable templates for local/preview/production parity
 
 ## Stack (target)
 

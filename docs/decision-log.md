@@ -30,3 +30,11 @@ This file records significant technical/product decisions (lightweight ADR style
 - **Decision**: Capability-scoped PRs on feature branches with mandatory template + evidence.
 - **Consequences**: Higher process discipline; better external storytelling and reviewability.
 
+
+
+## 2026-04-08 — ADR-005: Deployment split with environment parity
+
+- **Status**: Accepted
+- **Context**: MVP requires deployed frontend/backend with repeatable preview + production promotion.
+- **Decision**: Standardize on Vercel for frontend and Render for backend, with explicit env templates and manifest files (`vercel.json`, `render.yaml`).
+- **Consequences**: Faster initial delivery and PR preview workflows; introduces cross-platform environment management discipline.
