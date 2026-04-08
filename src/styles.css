@@ -307,3 +307,82 @@ p {
 .docsProse strong {
   color: #f2f6ff;
 }
+
+.searchPanel {
+  margin-top: 1rem;
+  border: 1px solid #263149;
+  border-radius: 10px;
+  background: #0d121f;
+  padding: 1rem;
+  max-width: 46rem;
+}
+
+.searchPanel__label {
+  display: block;
+  color: #cdd8f5;
+  margin-bottom: 0.45rem;
+  font-size: 0.9rem;
+}
+
+.searchPanel__controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.searchPanel__input {
+  flex: 1;
+  border: 1px solid #37486e;
+  border-radius: 8px;
+  background: #111a2e;
+  color: #ecf1ff;
+  padding: 0.55rem 0.65rem;
+}
+
+.searchPanel__button {
+  border: 1px solid #4b608f;
+  border-radius: 8px;
+  background: #15203a;
+  color: #dde8ff;
+  padding: 0.55rem 0.85rem;
+  cursor: pointer;
+}
+
+.searchPanel__button:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.searchPanel__error {
+  margin-top: 0.65rem;
+  color: #ffb4b4;
+}
+
+.searchPanel__results {
+  list-style: none;
+  margin: 0.9rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.searchPanel__result {
+  border: 1px solid #2a3550;
+  border-radius: 8px;
+  padding: 0.65rem 0.75rem;
+  background: #0a1120;
+}
+
+.searchPanel__title {
+  color: #e6edff;
+  font-weight: 600;
+}
+
+.searchPanel__empty {
+  color: #9ca8c3;
+}
+
+.searchPanel__link {
+  display: inline-block;
+  margin-top: 0.35rem;
+  color: #9fc2ff;
+}

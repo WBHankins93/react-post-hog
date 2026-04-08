@@ -46,7 +46,8 @@ Repository now includes:
 - workspace file tree + file viewer baseline
 - local workspace persistence for route, selected file, and sidebar layout
 - markdown docs rendering baseline with typography and code block styling
-- FastAPI backend scaffold with a `/health` endpoint
+- FastAPI backend scaffold with `/health` and `/search` endpoints
+- frontend search UI integrated with backend query results
 
 ## Stack (target)
 

@@ -5,6 +5,7 @@ This folder contains the initial FastAPI service scaffold for the Personal HQ MV
 ## Endpoints
 
 - `GET /health` — simple liveness endpoint returning `{"status": "ok"}`.
+- `GET /search?q=<query>` — mock indexed search endpoint returning route-aware matches.
 
 ## Local setup
 
