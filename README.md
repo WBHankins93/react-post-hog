@@ -45,6 +45,8 @@ Repository now includes:
 - keyboard-first command palette foundation (⌘/Ctrl + K)
 - workspace file tree + file viewer baseline
 - local workspace persistence for route, selected file, and sidebar layout
+- markdown docs rendering baseline with typography and code block styling
+- FastAPI backend scaffold with a `/health` endpoint
 
 ## Stack (target)
 
