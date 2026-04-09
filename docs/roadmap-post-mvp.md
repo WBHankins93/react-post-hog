@@ -10,7 +10,7 @@ Date: 2026-04-08
 
 ## Proposed milestone sequence
 
-### PR-011 — Design system and layout refinement
+### PR-011 — Design system and layout refinement 🚧 In progress
 
 - establish tokens (colors, spacing, typography) and reusable primitives
 - improve shell hierarchy, density, and interaction states
