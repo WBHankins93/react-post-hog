@@ -142,6 +142,8 @@ Detailed strategy: [`docs/testing-strategy.md`](docs/testing-strategy.md)
 - Milestones: [`docs/milestones.md`](docs/milestones.md)
 - Runbook: [`docs/runbook.md`](docs/runbook.md)
 - Testing strategy: [`docs/testing-strategy.md`](docs/testing-strategy.md)
+- v0.1 retrospective: [`docs/retrospective-v0.1.md`](docs/retrospective-v0.1.md)
+- Post-MVP roadmap: [`docs/roadmap-post-mvp.md`](docs/roadmap-post-mvp.md)
 
 ## Public portfolio description
 

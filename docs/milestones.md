@@ -45,8 +45,8 @@
 - backend deployment
 - preview + production env strategy
 
-## PR-010 — MVP release and retrospective
+## PR-010 — MVP release and retrospective ✅
 
-- v0.1 release tag
-- post-MVP lessons + roadmap update
+- v0.1 release tag ✅
+- post-MVP lessons + roadmap update ✅
 
