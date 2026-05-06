@@ -8,35 +8,48 @@ export type FileNode = {
 
 export const mockFileTree: FileNode[] = [
   {
-    id: 'folder-docs',
-    name: 'docs',
+    id: 'folder-hq',
+    name: 'personal-hq',
     type: 'folder',
     children: [
       {
-        id: 'file-docs-overview',
-        name: 'overview.md',
+        id: 'file-hq-home',
+        name: 'home.mdx',
         type: 'file',
         content:
-          '# Personal HQ\n\nThis file explorer is the PR-004 foundation. Next: persistence in PR-005.',
+          '# Personal HQ\n\nA playful product website and workbench skeleton: marketing homepage, OS chrome, command deck, docs, search, and original module cards.',
       },
       {
-        id: 'file-docs-roadmap',
-        name: 'roadmap.md',
+        id: 'file-hq-launch',
+        name: 'launch.plan',
         type: 'file',
-        content: '# Roadmap\n\n- PR-004: file tree + viewer\n- PR-005: state persistence',
+        content:
+          '# Launch Plan\n\n1) Finish PR-011 visual polish\n2) Rework the homepage\n3) Upgrade the file-browser shell\n4) Deepen PR-012 search UX',
       },
     ],
   },
   {
-    id: 'folder-notes',
-    name: 'notes',
+    id: 'folder-modules',
+    name: 'modules',
     type: 'folder',
     children: [
       {
-        id: 'file-notes-today',
-        name: 'today.txt',
+        id: 'file-modules-decisions',
+        name: 'decisions.adr',
         type: 'file',
-        content: 'Today focus:\n1) Keyboard flow\n2) File explorer\n3) Persisted workspace',
+        content: '# Decisions\n\nKeep small product and architecture decisions close to the workbench.',
+      },
+      {
+        id: 'file-modules-research',
+        name: 'research.db',
+        type: 'file',
+        content: '# Research\n\nCollect questions, references, and raw ideas before they become roadmap work.',
+      },
+      {
+        id: 'file-modules-changelog',
+        name: 'changelog.md',
+        type: 'file',
+        content: '# Changelog\n\n- PR-011: visual system polish\n- PR-012: search result UX depth\n- Illustration and mascot work: deferred for maintainer exploration',
       },
     ],
   },

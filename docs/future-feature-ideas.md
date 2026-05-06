@@ -152,15 +152,19 @@ Areas to test:
 
 - no mascot or illustration implementation yet
 - no copied imagery from PostHog
-- no broad UI rebuild before PR-011 is complete
+- no unrelated UI rebuild outside the agreed homepage, shell, search, and mode-toggle sequence
 - no backend expansion beyond what is needed for search UX depth
 - no authentication, collaboration, or real-time features yet
 
-## Recommended sequence from here
+## Recommended next sequence
 
-1. Complete PR-011 design system refinement.
-2. Rework the Overview route into the marketing homepage.
-3. Upgrade AppShell into the playful OS/file-browser frame.
-4. Complete PR-012 search result UX depth.
+1. Finish PR-011 visual/design-system polish.
+2. Rework Overview into the true PostHog-inspired marketing homepage.
+3. Upgrade AppShell into a more playful OS/file-browser frame.
+4. Complete PR-012 search UX depth.
 5. Add website/app mode toggle.
-6. Add original product modules, changelog, handbook, and later the illustration/mascot system.
+6. Add original product modules, changelog, handbook, and illustration system.
+
+## Implementation note
+
+The first implementation pass should stop short of final mascot/illustration production. The shell, homepage, search UX, mode toggle, and module/changelog/handbook structure can move forward while final artwork remains a separate maintainer-led review.
