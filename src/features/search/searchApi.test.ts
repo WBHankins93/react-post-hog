@@ -25,6 +25,8 @@ describe('searchWorkspace', () => {
             title: 'Workspace file explorer',
             snippet: 'Tree selection with content viewer.',
             route: '/workspace',
+            type: 'Workbench',
+            category: 'Files',
           },
         ],
       }),

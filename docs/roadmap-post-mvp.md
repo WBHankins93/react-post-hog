@@ -40,6 +40,10 @@ Date: 2026-04-08
 - baseline analytics/telemetry hooks
 - stability/performance sweep
 
+## Future idea backlog
+
+Future feature ideas are captured in [`future-feature-ideas.md`](future-feature-ideas.md). That document intentionally stops short of implementation so the visual identity, illustration, and mascot direction can be reviewed separately before code work begins.
+
 ## Scope guardrails
 
 - Keep PRs capability-scoped; avoid large mixed concerns.

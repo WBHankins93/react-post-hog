@@ -3,6 +3,8 @@ export type SearchResult = {
   title: string;
   snippet: string;
   route: string;
+  type: string;
+  category: string;
 };
 
 export type SearchResponse = {
