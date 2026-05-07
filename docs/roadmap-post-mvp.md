@@ -44,6 +44,10 @@ Date: 2026-04-08
 
 Future feature ideas are captured in [`future-feature-ideas.md`](future-feature-ideas.md). That document intentionally stops short of implementation so the visual identity, illustration, and mascot direction can be reviewed separately before code work begins.
 
+## MVP2 shape
+
+The MVP2 direction is captured in [`mvp2-readiness.md`](mvp2-readiness.md). In short: evolve the current shell from a polished preview into a guided operating workspace with clear context, next actions, search-as-command discovery, and launch confidence.
+
 ## Scope guardrails
 
 - Keep PRs capability-scoped; avoid large mixed concerns.

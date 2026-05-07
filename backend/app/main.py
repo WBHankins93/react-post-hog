@@ -33,6 +33,8 @@ def search(q: str = Query(min_length=1, max_length=120)) -> dict[str, object]:
                 "route": result.route,
                 "type": result.type,
                 "category": result.category,
+                "intent": result.intent,
+                "actionLabel": result.action_label,
             }
             for result in results
         ],

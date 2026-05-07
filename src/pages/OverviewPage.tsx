@@ -1,5 +1,6 @@
 import { FormEvent, KeyboardEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { getLaunchReadinessSummary, launchReadinessItems } from '../features/launch/launchReadiness';
 import { SearchResult, searchWorkspace } from '../features/search/searchApi';
 
 const modules = [
@@ -8,44 +9,85 @@ const modules = [
     description: 'Write the canonical story once, then make it easy to rediscover.',
     route: '/docs',
     badge: 'docs.mdx',
+    outcome: 'Shared context',
   },
   {
     title: 'Tasks / launches',
     description: 'Plan tiny launches with the same discipline as product releases.',
     route: '/workspace',
     badge: 'launch.plan',
+    outcome: 'Next actions',
   },
   {
     title: 'Decisions',
     description: 'Keep lightweight ADRs close to the workbench context that created them.',
     route: '/docs',
     badge: 'adr.log',
+    outcome: 'Tradeoffs',
   },
   {
     title: 'Research',
     description: 'Collect inputs, questions, and references before they become strategy.',
     route: '/workspace',
     badge: 'research.db',
+    outcome: 'Signals',
   },
   {
     title: 'Changelog',
     description: 'Expose launch notes and release rhythm as part of the public product surface.',
     route: '/docs',
     badge: 'changelog.md',
+    outcome: 'Release story',
   },
   {
     title: 'Handbook',
     description: 'Turn process docs into a readable operating manual for how the HQ is built.',
     route: '/docs',
     badge: 'handbook.mdx',
+    outcome: 'Operating rules',
   },
 ];
 
 const launchNotes = [
-  'PR-011: visual system polish is the next build checkpoint.',
-  'PR-012: search gets richer cards, keyboard movement, and clearer states.',
-  'Mascot and illustration exploration stays paused for maintainer review.',
+  'Design polish now focuses on decision clarity instead of decorative chrome.',
+  'Search should graduate from content lookup to command discovery.',
+  'MVP2 should prove the workspace can guide a launch from context to confidence.',
 ];
+
+const mvp2Tracks = [
+  {
+    title: 'Guided workspace',
+    description: 'Replace static previews with artifacts, recents, and next-action prompts.',
+    status: 'MVP2.1',
+    evidence: 'Users can resume the last launch context without rereading the docs.',
+  },
+  {
+    title: 'Search as command layer',
+    description: 'Blend docs, files, and route actions into one keyboard-first discovery surface.',
+    status: 'MVP2.2',
+    evidence: 'A query can open context, execute navigation, or explain why nothing matched.',
+  },
+  {
+    title: 'Launch readiness',
+    description: 'Expose checklist health, release notes, and runbook confidence before deploys.',
+    status: 'MVP2.3',
+    evidence: 'Reviewers can see what is ready, blocked, and intentionally deferred.',
+  },
+];
+
+const launchReadinessSummary = getLaunchReadinessSummary();
+
+const readinessStats = [
+  { label: 'Core surfaces', value: '3/3', detail: 'Home, workspace, docs' },
+  { label: 'MVP2 phases', value: '3/3', detail: 'Guidance, command search, launch readiness' },
+  {
+    label: 'Launch confidence',
+    value: launchReadinessSummary.confidenceLabel,
+    detail: 'Editing workflow intentionally deferred',
+  },
+];
+
+const actionQueue = launchReadinessItems.map((item) => `${item.label}: ${item.detail}`);
 
 export function OverviewPage() {
   const [query, setQuery] = useState('');
@@ -109,8 +151,8 @@ export function OverviewPage() {
           <p className="eyebrow">Personal HQ / product-os.local</p>
           <h2>Build your tiny company operating system from one playful workbench.</h2>
           <p className="hero__lede">
-            A PostHog-inspired skeleton for a marketing site, docs surface, and OS-like app shell —
-            with original content, original visuals, and keyboard-first workflows.
+            A calmer MVP shell for a marketing site, docs surface, and OS-like app — now tuned
+            toward MVP2 workflows: guided context, richer search, and launch readiness.
           </p>
           <div className="hero__actions">
             <Link to="/workspace" className="buttonLink buttonLink--primary">
@@ -122,25 +164,35 @@ export function OverviewPage() {
           </div>
         </div>
 
-        <div className="terminalCard" aria-label="Install command preview">
-          <div className="terminalCard__bar">
-            <span />
-            <span />
-            <span />
+        <aside className="readinessCard" aria-label="MVP2 readiness summary">
+          <div className="readinessCard__header">
+            <p className="eyebrow">MVP2 snapshot</p>
+            <strong>Ready to shape</strong>
           </div>
-          <p className="terminalCard__label">Install the idea</p>
-          <code>npx personal-hq@latest init --mode=playful</code>
-          <p>
-            No copied mascot yet. Just the bones: homepage, file chrome, command deck, docs, and
-            search.
-          </p>
-        </div>
+          <div className="readinessCard__stats">
+            {readinessStats.map((stat) => (
+              <div className="readinessStat" key={stat.label}>
+                <span>{stat.label}</span>
+                <strong>{stat.value}</strong>
+                <p>{stat.detail}</p>
+              </div>
+            ))}
+          </div>
+          <div className="readinessCard__queue">
+            <p className="readinessCard__label">Next build queue</p>
+            <ol>
+              {actionQueue.map((action) => (
+                <li key={action}>{action}</li>
+              ))}
+            </ol>
+          </div>
+        </aside>
       </div>
 
       <section className="moduleGrid" aria-labelledby="module-grid-title">
         <div>
           <p className="eyebrow">Product OS modules</p>
-          <h2 id="module-grid-title">Original modules, familiar workbench rhythm.</h2>
+          <h2 id="module-grid-title">A tidier workbench rhythm for the MVP2 runway.</h2>
         </div>
         <div className="moduleGrid__cards">
           {modules.map((module) => (
@@ -148,7 +200,30 @@ export function OverviewPage() {
               <span className="moduleCard__badge">{module.badge}</span>
               <h3>{module.title}</h3>
               <p>{module.description}</p>
+              <span className="moduleCard__outcome">{module.outcome}</span>
             </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="mvpPanel" aria-labelledby="mvp2-title">
+        <div className="mvpPanel__intro">
+          <p className="eyebrow">MVP2 runway</p>
+          <h2 id="mvp2-title">What MVP2 looks like from here.</h2>
+          <p>
+            MVP2 should feel less like a static demo and more like a small operating room: every
+            surface explains the current context, the next useful action, and the confidence level
+            for shipping.
+          </p>
+        </div>
+        <div className="mvpPanel__tracks">
+          {mvp2Tracks.map((track) => (
+            <article className="mvpTrack" key={track.title}>
+              <span>{track.status}</span>
+              <h3>{track.title}</h3>
+              <p>{track.description}</p>
+              <small>{track.evidence}</small>
+            </article>
           ))}
         </div>
       </section>
@@ -166,10 +241,10 @@ export function OverviewPage() {
       <form className="searchPanel" onSubmit={handleSearch}>
         <div className="searchPanel__header">
           <div>
-            <p className="eyebrow">PR-012 preview</p>
+            <p className="eyebrow">Phase 2 · Command search</p>
             <h2>Search the workbench</h2>
           </div>
-          <p>Use arrows to move through results, then Enter to open the active result.</p>
+          <p>Use arrows to move through results, then Enter to run the active navigation command.</p>
         </div>
         <label className="searchPanel__label" htmlFor="workspace-search">
           Search project content
@@ -180,7 +255,7 @@ export function OverviewPage() {
             className="searchPanel__input"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="Try: workspace, architecture, command, module"
+            placeholder="Try: readiness, launch, command, workspace"
           />
           <button type="submit" className="searchPanel__button" disabled={isLoading}>
             {isLoading ? 'Searching…' : 'Search'}
@@ -205,11 +280,12 @@ export function OverviewPage() {
                   <div className="searchPanel__meta">
                     <span>{result.type}</span>
                     <span>{result.category}</span>
+                    <span>{result.intent}</span>
                   </div>
                   <p className="searchPanel__title">{result.title}</p>
                   <p>{result.snippet}</p>
                   <Link to={result.route} className="searchPanel__link">
-                    Open {result.route}
+                    {result.actionLabel}
                   </Link>
                 </li>
               ))

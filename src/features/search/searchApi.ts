@@ -5,6 +5,8 @@ export type SearchResult = {
   route: string;
   type: string;
   category: string;
+  intent: string;
+  actionLabel: string;
 };
 
 export type SearchResponse = {
