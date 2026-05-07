@@ -140,11 +140,11 @@ export function AppShell() {
               </div>
               <div className="shell__utilityRow">
                 <span>Stage</span>
-                <strong>MVP2</strong>
+                <strong>MVP2 all-in</strong>
               </div>
               <div className="shell__utilityRow">
                 <span>Focus</span>
-                <strong>Guidance</strong>
+                <strong>Launch ready</strong>
               </div>
             </div>
           </>

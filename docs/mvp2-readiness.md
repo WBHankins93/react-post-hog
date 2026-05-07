@@ -39,6 +39,10 @@ MVP2 planning is ready when:
 - Search has a defined upgrade path from query results to command discovery.
 - Docs describe readiness, acceptance criteria, and non-goals.
 
+## Build phases
+
+Implementation now includes all three focused phases in [`mvp2-build-phases.md`](mvp2-build-phases.md): guided workspace artifacts, search-as-command, and launch readiness.
+
 ## Design acceptance criteria
 
 - The hero avoids placeholder install commands and instead explains current product readiness.

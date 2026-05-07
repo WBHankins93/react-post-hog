@@ -27,6 +27,8 @@ describe('searchWorkspace', () => {
             route: '/workspace',
             type: 'Workbench',
             category: 'Files',
+            intent: 'Resume context',
+            actionLabel: 'Open workspace',
           },
         ],
       }),

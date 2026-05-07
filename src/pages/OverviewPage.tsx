@@ -1,5 +1,6 @@
 import { FormEvent, KeyboardEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { getLaunchReadinessSummary, launchReadinessItems } from '../features/launch/launchReadiness';
 import { SearchResult, searchWorkspace } from '../features/search/searchApi';
 
 const modules = [
@@ -74,17 +75,19 @@ const mvp2Tracks = [
   },
 ];
 
+const launchReadinessSummary = getLaunchReadinessSummary();
+
 const readinessStats = [
   { label: 'Core surfaces', value: '3/3', detail: 'Home, workspace, docs' },
-  { label: 'Next MVP2 proof', value: 'Guidance', detail: 'Prompts and confidence states' },
-  { label: 'Risk to resolve', value: 'Search', detail: 'Move beyond static results' },
+  { label: 'MVP2 phases', value: '3/3', detail: 'Guidance, command search, launch readiness' },
+  {
+    label: 'Launch confidence',
+    value: launchReadinessSummary.confidenceLabel,
+    detail: 'Editing workflow intentionally deferred',
+  },
 ];
 
-const actionQueue = [
-  'Add artifact summaries to the workspace viewer.',
-  'Promote command actions inside search results.',
-  'Expose launch checklist status in the shell chrome.',
-];
+const actionQueue = launchReadinessItems.map((item) => `${item.label}: ${item.detail}`);
 
 export function OverviewPage() {
   const [query, setQuery] = useState('');
@@ -238,10 +241,10 @@ export function OverviewPage() {
       <form className="searchPanel" onSubmit={handleSearch}>
         <div className="searchPanel__header">
           <div>
-            <p className="eyebrow">PR-012 preview</p>
+            <p className="eyebrow">Phase 2 · Command search</p>
             <h2>Search the workbench</h2>
           </div>
-          <p>Use arrows to move through results, then Enter to open the active result.</p>
+          <p>Use arrows to move through results, then Enter to run the active navigation command.</p>
         </div>
         <label className="searchPanel__label" htmlFor="workspace-search">
           Search project content
@@ -252,7 +255,7 @@ export function OverviewPage() {
             className="searchPanel__input"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="Try: workspace, architecture, command, module"
+            placeholder="Try: readiness, launch, command, workspace"
           />
           <button type="submit" className="searchPanel__button" disabled={isLoading}>
             {isLoading ? 'Searching…' : 'Search'}
@@ -277,11 +280,12 @@ export function OverviewPage() {
                   <div className="searchPanel__meta">
                     <span>{result.type}</span>
                     <span>{result.category}</span>
+                    <span>{result.intent}</span>
                   </div>
                   <p className="searchPanel__title">{result.title}</p>
                   <p>{result.snippet}</p>
                   <Link to={result.route} className="searchPanel__link">
-                    Open {result.route}
+                    {result.actionLabel}
                   </Link>
                 </li>
               ))
