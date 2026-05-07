@@ -5,8 +5,8 @@ import { loadWorkspaceState, saveWorkspaceState } from './workspaceState';
 import type { DisplayMode } from './workspaceState';
 
 const navigation = [
-  { to: '/', label: 'home.mdx', description: 'Marketing surface', end: true },
-  { to: '/workspace', label: 'workspace.app', description: 'File workbench' },
+  { to: '/', label: 'home.mdx', description: 'MVP2 runway', end: true },
+  { to: '/workspace', label: 'workspace.app', description: 'Guided workbench' },
   { to: '/docs', label: 'docs.mdx', description: 'Handbook docs' },
 ];
 
@@ -91,7 +91,7 @@ export function AppShell() {
           <p className="shell__brandMark">HQ</p>
           <div>
             <h1 className="shell__title">Personal HQ</h1>
-            <p className="shell__subtitle">product-os.local</p>
+            <p className="shell__subtitle">MVP2 runway</p>
           </div>
         </div>
 
@@ -139,12 +139,12 @@ export function AppShell() {
                 <strong>{displayMode}</strong>
               </div>
               <div className="shell__utilityRow">
-                <span>Zoom</span>
-                <strong>100%</strong>
+                <span>Stage</span>
+                <strong>MVP2</strong>
               </div>
               <div className="shell__utilityRow">
-                <span>Font</span>
-                <strong>Inter</strong>
+                <span>Focus</span>
+                <strong>Guidance</strong>
               </div>
             </div>
           </>
