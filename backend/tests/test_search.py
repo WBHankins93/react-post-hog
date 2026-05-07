@@ -16,6 +16,7 @@ def test_search_endpoint_returns_matches() -> None:
     assert payload["count"] >= 1
     assert any(result["route"] == "/workspace" for result in payload["results"])
     assert all("type" in result and "category" in result for result in payload["results"])
+    assert all("intent" in result and "actionLabel" in result for result in payload["results"])
 
 
 def test_search_endpoint_rejects_blank_query() -> None:
@@ -34,3 +35,9 @@ def test_search_documents_matches_metadata() -> None:
     results = search_documents("module")
 
     assert any(result.category == "Homepage" for result in results)
+
+
+def test_search_documents_matches_command_intent() -> None:
+    results = search_documents("readiness")
+
+    assert any(result.intent == "Check readiness" for result in results)
