@@ -86,3 +86,5 @@ If production issues occur:
 1. Create a new Web Service from `render.yaml` (Blueprint deploy).
 2. Set `BACKEND_CORS_ORIGINS` for each environment to frontend URL(s).
 3. Confirm `/health` and `/search?q=test` respond after deploy.
+
+> **Note:** Render free tier limits change over time. Treat free tier use as best-effort for demos, not production reliability. Verify current pricing/limits on the Render pricing page before making final infra decisions.

@@ -1,152 +1,88 @@
-# Personal HQ (PostHog-inspired) — 0 → 1 Build
+# Personal HQ
 
-A 0→1 personal HQ platform inspired by OS metaphors and modern product docs UX, built with React + Vite and Python FastAPI, developed through production-style PR workflows and progressive deployment.
+A personal operating system platform with a marketing home surface and an OS-like workspace, built with React + Vite and Python FastAPI.
 
-## Why this project exists
+## Quick Start
 
-This repository is intentionally structured as a **Founding Engineer style build log**:
+**Prerequisites:** Node.js (v18+), Python 3.11+
 
-- tight MVP scope before expansion
-- small, reviewable PRs on feature branches
-- clear architecture and deployment trade-offs
-- explicit decision logs
-- "prod-ish" quality gates from day one
+```bash
+# Frontend
+npm install
+cp .env.example .env
+npm run dev
+```
 
-## Product direction
+```bash
+# Backend
+cd backend
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env
+uvicorn app.main:app --reload
+```
 
-We are building a **hybrid experience**:
+Frontend runs at `http://localhost:5173`, backend at `http://localhost:8000`.
 
-1. Marketing/home surface
-2. Logged-in "OS-like" app workspace
+## Tech Stack
 
-The MVP is intentionally constrained to prove speed + quality.
+**Frontend:** React 18, TypeScript, Vite, React Router, custom CSS with design tokens
 
-## MVP (strict)
+**Backend:** Python FastAPI, Uvicorn
 
-The MVP ships when these 5 capabilities are complete:
+**Infra:** Vercel (frontend), Render (backend), GitHub Actions CI
 
-1. App shell (sidebar + main pane + command area)
-2. Keyboard command palette (`Cmd/Ctrl + K`)
-3. File tree + viewer (local/mock data)
-4. Stateful workspace persistence (restore layout + active context)
-5. Beautiful docs rendering (markdown/MDX quality baseline)
+## Project Structure
 
-Non-goals are documented in [`docs/mvp-scope.md`](docs/mvp-scope.md).
+```
+src/
+  app/           # App shell layout, workspace state persistence
+  components/    # Command palette
+  pages/         # Overview, Workspace, Docs pages
+  features/
+    files/       # File tree component + mock data
+    docs/        # Custom markdown renderer
+    search/      # Search API client
+  content/       # Markdown content files
+backend/
+  app/           # FastAPI app, search endpoint, config
+  tests/         # Health + search endpoint tests
+docs/            # Architecture decisions, runbook, vision, roadmap
+```
 
+## Available Scripts
 
-## Current implementation status
+| Command | Description |
+|---|---|
+| `npm run dev` | Start Vite dev server |
+| `npm run build` | Type-check and build for production |
+| `npm run preview` | Preview production build |
+| `npm run test` | Run Vitest tests |
+| `npm run lint` | Run ESLint |
+| `npm run typecheck` | Run TypeScript compiler check |
 
-Repository now includes:
+## Features
 
-- Vite + React + TypeScript scaffold
-- baseline ESLint configuration
-- CI workflow for lint/typecheck/test/build
-- app shell with route scaffolding (overview/workspace/docs)
-- keyboard-first command palette foundation (⌘/Ctrl + K)
-- workspace file tree + file viewer baseline
-- local workspace persistence for route, selected file, and sidebar layout
-- markdown docs rendering baseline with typography and code block styling
-- FastAPI backend scaffold with `/health` and `/search` endpoints
-- frontend search UI integrated with backend query results
-- deployment blueprints for Vercel (frontend) and Render (backend)
-- environment variable templates for local/preview/production parity
+- **App shell** -- sidebar navigation, collapsible layout, window chrome, mode toggle
+- **Command palette** -- `Cmd/Ctrl + K` keyboard-first command search and execution
+- **File tree + viewer** -- recursive folder/file explorer with content preview
+- **Workspace persistence** -- restores route, sidebar state, selected file, and display mode via localStorage
+- **Docs rendering** -- custom markdown-to-HTML renderer with typography and code block styling
+- **Search** -- frontend search UI integrated with backend `/search` endpoint (mock index)
+- **CI pipeline** -- lint, typecheck, test, and build on every PR
 
-## Stack (target)
+## Documentation
 
-### Frontend
-
-- React + TypeScript + Vite
-- React Router
-- Zustand
-- Tailwind CSS
-
-### Backend
-
-- Python FastAPI
-- SQLite (initial)
-- Search index endpoint (`/search`)
-
-## Deployment strategy
-
-### Recommended initial split
-
-- Frontend: Vercel
-- Backend: Render (or Fly/Railway)
-
-This is a valid production path, and keeps operational complexity low.
-
-### About Render free tier
-
-Render has historically offered free options, but tiers and limits change over time. Treat free tier use as **best-effort for demos**, not production reliability. Before final infra decisions, always verify current pricing/limits directly on vendor pricing pages.
-
-### Should we use Next.js instead?
-
-- **Vite path**: best for focused React skill refresh and explicit architecture control.
-- **Next.js path**: best when SSR/SSG/ISR and integrated full-stack features are mandatory.
-
-This repo starts with Vite for learning velocity and can later migrate/expand to Next.js if product needs demand it.
-
-## Environments + pipeline
-
-Use separate environments for frontend and backend, with consistent naming:
-
-- `development` (local)
-- `preview` (per-PR deploys)
-- `production`
-
-Recommended CI/CD model:
-
-1. PR opened → lint/typecheck/tests/build
-2. Preview deploy frontend + backend
-3. Smoke test against preview URLs
-4. Merge to `main`
-5. Production deploy auto-triggered with protected branch checks
-
-See [`docs/runbook.md`](docs/runbook.md) for operational guidance.
-
-## Branching and PR workflow
-
-- `main` is always deployable
-- one feature per branch (`feat/*`, `chore/*`, `docs/*`)
-- one capability per PR
-- include test evidence and screenshots where UI changes are visible
-
-See:
-
-- [`.github/pull_request_template.md`](.github/pull_request_template.md)
-- [`docs/milestones.md`](docs/milestones.md)
-
-## Testing strategy (phased)
-
-### MVP quality gates
-
-- lint
-- typecheck
-- unit tests for critical UI/state logic
-- build
-
-### After MVP
-
-- component/integration tests (React Testing Library)
-- API tests for FastAPI endpoints
-- lightweight end-to-end smoke tests
-
-Detailed strategy: [`docs/testing-strategy.md`](docs/testing-strategy.md)
-
-## Documentation map
-
-- Vision: [`docs/vision.md`](docs/vision.md)
-- Scope: [`docs/mvp-scope.md`](docs/mvp-scope.md)
-- Architecture: [`docs/architecture.md`](docs/architecture.md)
-- Decision log: [`docs/decision-log.md`](docs/decision-log.md)
-- Milestones: [`docs/milestones.md`](docs/milestones.md)
-- Runbook: [`docs/runbook.md`](docs/runbook.md)
-- Testing strategy: [`docs/testing-strategy.md`](docs/testing-strategy.md)
-- v0.1 retrospective: [`docs/retrospective-v0.1.md`](docs/retrospective-v0.1.md)
-- Post-MVP roadmap: [`docs/roadmap-post-mvp.md`](docs/roadmap-post-mvp.md)
-- Future feature ideas: [`docs/future-feature-ideas.md`](docs/future-feature-ideas.md)
-
-## Public portfolio description
-
-> A 0→1 personal HQ platform inspired by OS metaphors and modern product docs UX, built with React + Vite and Python FastAPI, developed through production-style PR workflows and progressive deployment.
-
+| Document | Description |
+|---|---|
+| [Vision](docs/vision.md) | Product strategy and goals |
+| [MVP Scope](docs/mvp-scope.md) | What's in and out of scope |
+| [Architecture](docs/architecture.md) | System design and module boundaries |
+| [Decision Log](docs/decision-log.md) | Trade-off decisions and ADRs |
+| [Testing Strategy](docs/testing-strategy.md) | Quality gates and test approach |
+| [Milestones](docs/milestones.md) | Release tracking |
+| [Runbook](docs/runbook.md) | Local setup, deployment, and operations |
+| [Retrospective](docs/retrospective-v0.1.md) | v0.1 lessons learned |
+| [Post-MVP Roadmap](docs/roadmap-post-mvp.md) | Future direction |
+| [Future Ideas](docs/future-feature-ideas.md) | Feature brainstorm |
