@@ -24,7 +24,7 @@ export const mockFileTree: FileNode[] = [
         name: 'launch.plan',
         type: 'file',
         content:
-          '# Launch Plan\n\n1) Finish PR-011 visual polish\n2) Rework the homepage\n3) Upgrade the file-browser shell\n4) Deepen PR-012 search UX',
+          '# MVP2 Launch Plan\n\n1) Ship the polished MVP shell\n2) Add guided workspace prompts and recents\n3) Upgrade search into command discovery\n4) Show launch readiness and release confidence',
       },
     ],
   },
@@ -49,7 +49,7 @@ export const mockFileTree: FileNode[] = [
         id: 'file-modules-changelog',
         name: 'changelog.md',
         type: 'file',
-        content: '# Changelog\n\n- PR-011: visual system polish\n- PR-012: search result UX depth\n- Illustration and mascot work: deferred for maintainer exploration',
+        content: '# Changelog\n\n- PR-011: visual system polish completed for MVP review\n- PR-012: search result UX depth\n- MVP2: guided workspace, command search, and launch readiness',
       },
     ],
   },
