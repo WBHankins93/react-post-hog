@@ -18,6 +18,12 @@ const workspaceGuidance = [
   'Show readiness state before introducing editing workflows.',
 ];
 
+const workspaceGuidance = [
+  'Summarize the selected artifact in plain language.',
+  'Attach one recommended next action to every launch file.',
+  'Show readiness state before introducing editing workflows.',
+];
+
 export function WorkspacePage() {
   const files = useMemo(() => collectFiles(mockFileTree), []);
   const [selectedFileId, setSelectedFileId] = useState<string | null>(
