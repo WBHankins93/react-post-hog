@@ -1,24 +1,21 @@
 import { useEffect, useMemo, useState } from 'react';
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { CommandPalette } from '../components/CommandPalette';
+import { getModeLabel, getRouteLabel, isKnownRoute, navigationItems } from './navigation';
 import { loadWorkspaceState, saveWorkspaceState } from './workspaceState';
 import type { DisplayMode } from './workspaceState';
 
-const navigation = [
-  { to: '/', label: 'home.mdx', description: 'Marketing surface', end: true },
-  { to: '/workspace', label: 'workspace.app', description: 'File workbench' },
-  { to: '/docs', label: 'docs.mdx', description: 'Handbook docs' },
-];
-
 export function AppShell() {
+  const initialWorkspaceState = useMemo(() => loadWorkspaceState(), []);
   const [isPaletteOpen, setIsPaletteOpen] = useState(false);
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(() => loadWorkspaceState().sidebarCollapsed);
-  const [displayMode, setDisplayMode] = useState<DisplayMode>(() => loadWorkspaceState().displayMode);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(initialWorkspaceState.sidebarCollapsed);
+  const [displayMode, setDisplayMode] = useState<DisplayMode>(initialWorkspaceState.displayMode);
   const [hasRestoredRoute, setHasRestoredRoute] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
-  const modeLabel = displayMode === 'website' ? 'Website mode' : 'Workspace mode';
+  const modeLabel = getModeLabel(displayMode);
+  const routeLabel = getRouteLabel(location.pathname);
 
   const commands = useMemo(
     () => [
@@ -66,13 +63,13 @@ export function AppShell() {
       return;
     }
 
-    const restoredRoute = loadWorkspaceState().lastRoute;
-    if (restoredRoute && restoredRoute !== location.pathname) {
+    const restoredRoute = initialWorkspaceState.lastRoute;
+    if (isKnownRoute(restoredRoute) && restoredRoute !== location.pathname) {
       navigate(restoredRoute, { replace: true });
     }
 
     setHasRestoredRoute(true);
-  }, [hasRestoredRoute, location.pathname, navigate]);
+  }, [hasRestoredRoute, initialWorkspaceState.lastRoute, location.pathname, navigate]);
 
   useEffect(() => {
     const currentState = loadWorkspaceState();
@@ -117,7 +114,7 @@ export function AppShell() {
           <>
             <p className="shell__routeHint">Current file: {location.pathname === '/' ? '/home' : location.pathname}</p>
             <nav className="shell__nav" aria-label="Primary navigation">
-              {navigation.map((item) => (
+              {navigationItems.map((item) => (
                 <NavLink
                   key={item.to}
                   to={item.to}
@@ -158,7 +155,7 @@ export function AppShell() {
               <span />
               <span />
             </div>
-            <p>{modeLabel} · {location.pathname === '/' ? 'home.mdx' : location.pathname.slice(1)}</p>
+            <p>{modeLabel} · {routeLabel}</p>
           </div>
           <div className="shell__windowBody">
             <Outlet />

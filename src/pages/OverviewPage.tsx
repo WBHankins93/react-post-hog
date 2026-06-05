@@ -1,6 +1,6 @@
 import { FormEvent, KeyboardEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { SearchResult, searchWorkspace } from '../features/search/searchApi';
+import { SearchApiError, SearchResult, searchWorkspace } from '../features/search/searchApi';
 
 const modules = [
   {
@@ -69,7 +69,11 @@ export function OverviewPage() {
       const response = await searchWorkspace(trimmedQuery);
       setResults(response.results);
     } catch (error) {
-      setErrorMessage('Search is unavailable. Verify backend is running on port 8000.');
+      setErrorMessage(
+        error instanceof SearchApiError
+          ? error.message
+          : 'Search is unavailable. Verify backend is running on port 8000.',
+      );
       setResults([]);
       console.error(error);
     } finally {

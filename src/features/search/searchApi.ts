@@ -15,18 +15,36 @@ export type SearchResponse = {
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8000';
 
+export class SearchApiError extends Error {
+  constructor(
+    message: string,
+    public readonly cause?: unknown,
+  ) {
+    super(message);
+    this.name = 'SearchApiError';
+  }
+}
+
 export async function searchWorkspace(query: string): Promise<SearchResponse> {
   const trimmedQuery = query.trim();
   if (!trimmedQuery) {
     return { query: trimmedQuery, count: 0, results: [] };
   }
 
-  const searchParams = new URLSearchParams({ q: trimmedQuery });
-  const response = await fetch(`${API_BASE_URL}/search?${searchParams.toString()}`);
+  try {
+    const searchParams = new URLSearchParams({ q: trimmedQuery });
+    const response = await fetch(`${API_BASE_URL}/search?${searchParams.toString()}`);
 
-  if (!response.ok) {
-    throw new Error(`Search request failed with status ${response.status}`);
+    if (!response.ok) {
+      throw new SearchApiError(`Search request failed with status ${response.status}`);
+    }
+
+    return (await response.json()) as SearchResponse;
+  } catch (error) {
+    if (error instanceof SearchApiError) {
+      throw error;
+    }
+
+    throw new SearchApiError('Search service is unreachable. Is the backend running on port 8000?', error);
   }
-
-  return (await response.json()) as SearchResponse;
 }
