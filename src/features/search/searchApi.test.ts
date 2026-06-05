@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import { searchWorkspace } from './searchApi';
+import { SearchApiError, searchWorkspace } from './searchApi';
 
 describe('searchWorkspace', () => {
   it('returns empty results for blank queries', async () => {
@@ -38,6 +38,29 @@ describe('searchWorkspace', () => {
 
     expect(fetchMock).toHaveBeenCalledOnce();
     expect(response.count).toBe(1);
+
+    fetchMock.mockRestore();
+  });
+
+  it('throws a traceable error for failed backend responses', async () => {
+    const fetchMock = vi.spyOn(globalThis, 'fetch').mockResolvedValue({
+      ok: false,
+      status: 503,
+    } as Response);
+
+    await expect(searchWorkspace('workspace')).rejects.toMatchObject({
+      name: 'SearchApiError',
+      message: 'Search request failed with status 503',
+    });
+
+    fetchMock.mockRestore();
+  });
+
+  it('wraps network failures with backend guidance', async () => {
+    const fetchMock = vi.spyOn(globalThis, 'fetch').mockRejectedValue(new Error('offline'));
+
+    await expect(searchWorkspace('workspace')).rejects.toBeInstanceOf(SearchApiError);
+    await expect(searchWorkspace('workspace')).rejects.toThrow('backend running on port 8000');
 
     fetchMock.mockRestore();
   });

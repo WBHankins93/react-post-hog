@@ -111,7 +111,11 @@ export function OverviewPage() {
       const response = await searchWorkspace(trimmedQuery);
       setResults(response.results);
     } catch (error) {
-      setErrorMessage('Search is unavailable. Verify backend is running on port 8000.');
+      setErrorMessage(
+        error instanceof SearchApiError
+          ? error.message
+          : 'Search is unavailable. Verify backend is running on port 8000.',
+      );
       setResults([]);
       console.error(error);
     } finally {

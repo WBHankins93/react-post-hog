@@ -1090,6 +1090,20 @@ p {
   color: #9ba9c8;
 }
 
+.errorState {
+  display: grid;
+  gap: var(--space-4);
+  max-width: 42rem;
+  border: 1px solid #7f3f4b;
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  background: linear-gradient(180deg, rgba(48, 16, 24, 0.88), rgba(12, 17, 29, 0.96));
+}
+
+.errorState .buttonLink {
+  justify-self: start;
+}
+
 @media (max-width: 1120px) {
   .hero,
   .mvpPanel,
