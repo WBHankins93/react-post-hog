@@ -9,6 +9,8 @@ class SearchDocument:
     route: str
     type: str
     category: str
+    intent: str
+    action_label: str
 
 
 DOCUMENTS: tuple[SearchDocument, ...] = (
@@ -19,6 +21,8 @@ DOCUMENTS: tuple[SearchDocument, ...] = (
         route="/docs#architecture",
         type="Docs",
         category="Architecture",
+        intent="Open reference",
+        action_label="Read architecture",
     ),
     SearchDocument(
         id="doc-workspace",
@@ -27,6 +31,8 @@ DOCUMENTS: tuple[SearchDocument, ...] = (
         route="/workspace",
         type="Workbench",
         category="Files",
+        intent="Resume context",
+        action_label="Open workspace",
     ),
     SearchDocument(
         id="doc-command-palette",
@@ -35,6 +41,8 @@ DOCUMENTS: tuple[SearchDocument, ...] = (
         route="/",
         type="Command",
         category="Navigation",
+        intent="Run command",
+        action_label="Open command deck",
     ),
     SearchDocument(
         id="doc-product-os",
@@ -43,6 +51,8 @@ DOCUMENTS: tuple[SearchDocument, ...] = (
         route="/",
         type="Module",
         category="Homepage",
+        intent="Inspect module",
+        action_label="Review modules",
     ),
     SearchDocument(
         id="doc-handbook",
@@ -51,6 +61,8 @@ DOCUMENTS: tuple[SearchDocument, ...] = (
         route="/docs",
         type="Docs",
         category="Handbook",
+        intent="Open handbook",
+        action_label="Read handbook",
     ),
     SearchDocument(
         id="doc-changelog",
@@ -59,6 +71,28 @@ DOCUMENTS: tuple[SearchDocument, ...] = (
         route="/docs",
         type="Docs",
         category="Changelog",
+        intent="Check readiness",
+        action_label="Review changelog",
+    ),
+    SearchDocument(
+        id="command-launch-readiness",
+        title="Launch readiness checklist",
+        snippet="Review guided artifacts, command search, release confidence, and deferred editing scope before MVP2 launch.",
+        route="/workspace",
+        type="Command",
+        category="Launch readiness",
+        intent="Check readiness",
+        action_label="Open readiness checklist",
+    ),
+    SearchDocument(
+        id="command-mvp2-phases",
+        title="MVP2 build phases",
+        snippet="Phase 1 guided workspace, Phase 2 command search, and Phase 3 launch readiness ship together for MVP2.",
+        route="/docs",
+        type="Command",
+        category="MVP2",
+        intent="Open plan",
+        action_label="Read MVP2 phases",
     ),
 )
 
@@ -75,6 +109,8 @@ def search_documents(query: str, *, limit: int = 5) -> list[SearchDocument]:
         or normalized in document.snippet.lower()
         or normalized in document.type.lower()
         or normalized in document.category.lower()
+        or normalized in document.intent.lower()
+        or normalized in document.action_label.lower()
     ]
 
     return matches[:limit]
