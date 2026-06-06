@@ -6,11 +6,13 @@ describe('navigation helpers', () => {
     expect(getModeLabel('website')).toBe('Website mode');
     expect(getModeLabel('workspace')).toBe('Workspace mode');
     expect(getRouteLabel('/')).toBe('home.mdx');
-    expect(getRouteLabel('/workspace')).toBe('workspace');
+    expect(getRouteLabel('/workspace')).toBe('workspace.app');
+    expect(getRouteLabel('/projects')).toBe('projects.app');
   });
 
   it('rejects unknown restored routes', () => {
     expect(isKnownRoute('/docs')).toBe(true);
+    expect(isKnownRoute('/tools')).toBe(true);
     expect(isKnownRoute('/missing')).toBe(false);
   });
 });

@@ -1,5 +1,7 @@
 # MVP Scope
 
+Personal HQ exists to bridge the surfaces that currently live apart: GitHub for code, LinkedIn for career history, a portfolio for selected skills, Sprooutflow for agency work, product experiments, writing, social posts, AI coaching, resume tooling, and e-commerce ventures. The MVP should feel like a hosted operating system for all of it.
+
 ## In scope (must ship)
 
 1. App shell layout
@@ -43,4 +45,3 @@ MVP is complete when:
 - CI quality gates pass on `main`
 - frontend + backend deployed with documented runbook
 - README and docs are sufficient for external onboarding
-

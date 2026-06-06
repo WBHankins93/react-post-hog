@@ -39,12 +39,12 @@ Frontend runs at `http://localhost:5173`, backend at `http://localhost:8000`.
 src/
   app/           # App shell layout, workspace state persistence
   components/    # Command palette
-  pages/         # Overview, Workspace, Docs pages
+  pages/         # Overview, Workspace, Docs, and shared HQ app pages
   features/
     files/       # File tree component + mock data
     docs/        # Custom markdown renderer
     search/      # Search API client
-  content/       # Markdown content files
+  content/       # Markdown content files and structured HQ app data
 backend/
   app/           # FastAPI app, search endpoint, config
   tests/         # Health + search endpoint tests
@@ -59,6 +59,7 @@ docs/            # Architecture decisions, runbook, vision, roadmap
 | `npm run build` | Type-check and build for production |
 | `npm run preview` | Preview production build |
 | `npm run test` | Run Vitest tests |
+| `npm run test:e2e` | Run browser smoke flow against a local Vite server |
 | `npm run lint` | Run ESLint |
 | `npm run typecheck` | Run TypeScript compiler check |
 
@@ -78,6 +79,7 @@ docs/            # Architecture decisions, runbook, vision, roadmap
 |---|---|
 | [Vision](docs/vision.md) | Product strategy and goals |
 | [MVP Scope](docs/mvp-scope.md) | What's in and out of scope |
+| [MVP Process](docs/mvp-process.md) | Phase plan, hosting readiness, and Personal HQ product framing |
 | [Architecture](docs/architecture.md) | System design and module boundaries |
 | [Decision Log](docs/decision-log.md) | Trade-off decisions and ADRs |
 | [Testing Strategy](docs/testing-strategy.md) | Quality gates and test approach |

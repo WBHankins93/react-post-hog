@@ -1,57 +1,57 @@
 import { FormEvent, KeyboardEvent, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { getLaunchReadinessSummary, launchReadinessItems } from '../features/launch/launchReadiness';
-import { SearchResult, searchWorkspace } from '../features/search/searchApi';
+import { SearchApiError, SearchResult, searchWorkspace } from '../features/search/searchApi';
 
 const modules = [
   {
-    title: 'Notes / docs',
-    description: 'Write the canonical story once, then make it easy to rediscover.',
+    title: 'Work / ventures',
+    description: 'Show Sprooutflow, portfolio work, the resume product, and venture experiments.',
+    route: '/projects',
+    badge: 'projects.app',
+    outcome: 'Proof of range',
+  },
+  {
+    title: 'Writing / posts',
+    description: 'Bridge blogs, build logs, Reddit-style posts, and future AI coaching notes.',
+    route: '/writing',
+    badge: 'writing.app',
+    outcome: 'Public thinking',
+  },
+  {
+    title: 'Gallery / proof',
+    description: 'Collect visual work, screenshots, product photos, and launch assets intentionally.',
+    route: '/gallery',
+    badge: 'gallery.app',
+    outcome: 'Visual evidence',
+  },
+  {
+    title: 'Tools / radar',
+    description: 'Track AI workflows, frontend systems, commerce tooling, and product references.',
+    route: '/tools',
+    badge: 'tools.app',
+    outcome: 'Technical taste',
+  },
+  {
+    title: 'Resume / links',
+    description: 'Explain who you are, what each external platform is for, and how to reach you.',
+    route: '/about',
+    badge: 'about.sys',
+    outcome: 'Identity bridge',
+  },
+  {
+    title: 'Docs / process',
+    description: 'Keep the MVP process, decisions, architecture, and build notes discoverable.',
     route: '/docs',
     badge: 'docs.mdx',
     outcome: 'Shared context',
   },
-  {
-    title: 'Tasks / launches',
-    description: 'Plan tiny launches with the same discipline as product releases.',
-    route: '/workspace',
-    badge: 'launch.plan',
-    outcome: 'Next actions',
-  },
-  {
-    title: 'Decisions',
-    description: 'Keep lightweight ADRs close to the workbench context that created them.',
-    route: '/docs',
-    badge: 'adr.log',
-    outcome: 'Tradeoffs',
-  },
-  {
-    title: 'Research',
-    description: 'Collect inputs, questions, and references before they become strategy.',
-    route: '/workspace',
-    badge: 'research.db',
-    outcome: 'Signals',
-  },
-  {
-    title: 'Changelog',
-    description: 'Expose launch notes and release rhythm as part of the public product surface.',
-    route: '/docs',
-    badge: 'changelog.md',
-    outcome: 'Release story',
-  },
-  {
-    title: 'Handbook',
-    description: 'Turn process docs into a readable operating manual for how the HQ is built.',
-    route: '/docs',
-    badge: 'handbook.mdx',
-    outcome: 'Operating rules',
-  },
 ];
 
 const launchNotes = [
-  'Design polish now focuses on decision clarity instead of decorative chrome.',
-  'Search should graduate from content lookup to command discovery.',
-  'MVP2 should prove the workspace can guide a launch from context to confidence.',
+  'Phase 1: foundation, hosting readiness, repo hygiene, and MVP process documentation.',
+  'Phase 2: HQ app map for projects, writing, gallery, tools, and about surfaces.',
+  'Next: replace placeholders with real portfolio entries, Sprooutflow work, and venture cards.',
 ];
 
 const mvp2Tracks = [
@@ -155,15 +155,16 @@ export function OverviewPage() {
           <p className="eyebrow">Personal HQ / product-os.local</p>
           <h2>Build your tiny company operating system from one playful workbench.</h2>
           <p className="hero__lede">
-            A calmer MVP shell for a marketing site, docs surface, and OS-like app — now tuned
-            toward MVP2 workflows: guided context, richer search, and launch readiness.
+            A PostHog-inspired Personal HQ that bridges code, career, agency work, products,
+            writing, social channels, AI coaching, and venture experiments while keeping the MVP2
+            workflow focused on context, search, and launch readiness.
           </p>
           <div className="hero__actions">
-            <Link to="/workspace" className="buttonLink buttonLink--primary">
-              Open workspace.app
+            <Link to="/projects" className="buttonLink buttonLink--primary">
+              Open projects.app
             </Link>
-            <Link to="/docs" className="buttonLink">
-              Read docs.mdx
+            <Link to="/about" className="buttonLink">
+              Open about.sys
             </Link>
           </div>
         </div>

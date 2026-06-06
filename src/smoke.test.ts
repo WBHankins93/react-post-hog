@@ -3,11 +3,16 @@ import { routes } from './routes';
 import { collectFiles, mockFileTree } from './features/files/mockFileTree';
 
 describe('router', () => {
-  it('defines workspace and docs routes', () => {
+  it('defines workspace, docs, and HQ app routes', () => {
     const routeConfig = JSON.stringify(routes);
 
     expect(routeConfig).toContain('workspace');
     expect(routeConfig).toContain('docs');
+    expect(routeConfig).toContain('projects');
+    expect(routeConfig).toContain('writing');
+    expect(routeConfig).toContain('gallery');
+    expect(routeConfig).toContain('tools');
+    expect(routeConfig).toContain('about');
   });
 });
 
