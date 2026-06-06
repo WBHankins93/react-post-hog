@@ -39,12 +39,12 @@ Frontend runs at `http://localhost:5173`, backend at `http://localhost:8000`.
 src/
   app/           # App shell layout, workspace state persistence
   components/    # Command palette
-  pages/         # Overview, Workspace, Docs pages
+  pages/         # Overview, Workspace, Docs, and shared HQ app pages
   features/
     files/       # File tree component + mock data
     docs/        # Custom markdown renderer
     search/      # Search API client
-  content/       # Markdown content files
+  content/       # Markdown content files and structured HQ app data
 backend/
   app/           # FastAPI app, search endpoint, config
   tests/         # Health + search endpoint tests

@@ -5,12 +5,6 @@ import { getModeLabel, getRouteLabel, isKnownRoute, navigationItems } from './na
 import { loadWorkspaceState, saveWorkspaceState } from './workspaceState';
 import type { DisplayMode } from './workspaceState';
 
-const navigation = [
-  { to: '/', label: 'home.mdx', description: 'MVP2 runway', end: true },
-  { to: '/workspace', label: 'workspace.app', description: 'Guided workbench' },
-  { to: '/docs', label: 'docs.mdx', description: 'Handbook docs' },
-];
-
 export function AppShell() {
   const initialWorkspaceState = useMemo(() => loadWorkspaceState(), []);
   const [isPaletteOpen, setIsPaletteOpen] = useState(false);
@@ -25,13 +19,11 @@ export function AppShell() {
 
   const commands = useMemo(
     () => [
-      { id: 'go-overview', label: 'Open home.mdx', run: () => navigate('/') },
-      {
-        id: 'go-workspace',
-        label: 'Open workspace.app',
-        run: () => navigate('/workspace'),
-      },
-      { id: 'go-docs', label: 'Open docs.mdx', run: () => navigate('/docs') },
+      ...navigationItems.map((item) => ({
+        id: `go-${item.label}`,
+        label: `Open ${item.label}`,
+        run: () => navigate(item.to),
+      })),
       {
         id: 'toggle-mode',
         label: displayMode === 'website' ? 'Switch to workspace mode' : 'Switch to website mode',

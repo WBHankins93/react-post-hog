@@ -190,6 +190,9 @@ async function runBrowserFlow(page) {
   await page.send('Page.navigate', { url: appUrl });
 
   await waitFor(page, `document.body.textContent.includes('Personal HQ')`, 'home page');
+  await clickText(page, 'Open projects.app');
+  await waitFor(page, `location.pathname === '/projects'`, 'projects route');
+  await waitFor(page, `document.body.textContent.includes('Sprooutflow')`, 'projects content');
   await clickText(page, 'Open workspace.app');
   await waitFor(page, `location.pathname === '/workspace'`, 'workspace route');
   await clickText(page, 'research.db');
@@ -200,11 +203,11 @@ async function runBrowserFlow(page) {
     `window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true, bubbles: true }))`,
   );
   await waitFor(page, `document.body.textContent.includes('Search commands')`, 'command palette');
-  await clickText(page, 'Open docs.mdx');
-  await waitFor(page, `location.pathname === '/docs'`, 'docs route from command palette');
+  await clickText(page, 'Open tools.app');
+  await waitFor(page, `location.pathname === '/tools'`, 'tools route from command palette');
 
   await page.send('Page.navigate', { url: appUrl });
-  await waitFor(page, `location.pathname === '/docs'`, 'restored docs route');
+  await waitFor(page, `location.pathname === '/tools'`, 'restored tools route');
   await clickText(page, 'home.mdx');
   await waitFor(page, `location.pathname === '/'`, 'home route');
   await setInputValue(page, '#workspace-search', 'workspace');

@@ -53,24 +53,46 @@ export const mockFileTree: FileNode[] = [
   },
   {
     id: 'folder-modules',
-    name: 'modules',
+    name: 'hq-apps',
     type: 'folder',
     children: [
       {
-        id: 'file-modules-decisions',
-        name: 'decisions.adr',
+        id: 'file-app-projects',
+        name: 'projects.app',
         type: 'file',
-        content: '# Decisions\n\nKeep small product and architecture decisions close to the workbench.',
+        content:
+          '# Projects\n\nSprooutflow, portfolio work, the resume report product, and e-commerce venture experiments live here.',
         artifact: {
           phase: 'Phase 1 · Guided context',
           readiness: 'ready',
-          summary: 'Captures why product and architecture choices were made.',
-          nextAction: 'Add the first ADR template once editing exists.',
-          owner: 'Engineering',
+          summary: 'Defines the portfolio, agency, product, and venture surface for the HQ.',
+          nextAction: 'Replace placeholders with the first real Sprooutflow and resume product entries.',
+          owner: 'Product',
         },
       },
       {
-        id: 'file-modules-research',
+        id: 'file-app-writing',
+        name: 'writing.app',
+        type: 'file',
+        content:
+          '# Writing\n\nBlogs, build logs, Reddit-style posts, and AI coaching notes become the public thinking layer.',
+      },
+      {
+        id: 'file-app-about',
+        name: 'about.sys',
+        type: 'file',
+        content:
+          '# About\n\nResume, social links, current focus, and the story that connects GitHub, LinkedIn, portfolio work, ventures, and coaching.',
+      },
+    ],
+  },
+  {
+    id: 'folder-ops',
+    name: 'ops',
+    type: 'folder',
+    children: [
+      {
+        id: 'file-ops-research',
         name: 'research.db',
         type: 'file',
         content: '# Research\n\nCollect questions, references, and raw ideas before they become roadmap work.',
@@ -83,10 +105,11 @@ export const mockFileTree: FileNode[] = [
         },
       },
       {
-        id: 'file-modules-changelog',
+        id: 'file-ops-changelog',
         name: 'changelog.md',
         type: 'file',
-        content: '# Changelog\n\n- PR-011: visual system polish completed for MVP review\n- PR-012: search result UX depth\n- MVP2: guided workspace, command search, and launch readiness',
+        content:
+          '# Changelog\n\n- Phase 1: foundation and MVP process\n- Phase 2: HQ app surfaces\n- MVP2: guided workspace, command search, and launch readiness\n- Next: real content, deploy metadata, and static search',
         artifact: {
           phase: 'Phase 3 · Launch readiness',
           readiness: 'blocked',
