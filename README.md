@@ -59,6 +59,7 @@ docs/            # Architecture decisions, runbook, vision, roadmap
 | `npm run build` | Type-check and build for production |
 | `npm run preview` | Preview production build |
 | `npm run test` | Run Vitest tests |
+| `npm run test:e2e` | Run browser smoke flow against a local Vite server |
 | `npm run lint` | Run ESLint |
 | `npm run typecheck` | Run TypeScript compiler check |
 
@@ -78,6 +79,7 @@ docs/            # Architecture decisions, runbook, vision, roadmap
 |---|---|
 | [Vision](docs/vision.md) | Product strategy and goals |
 | [MVP Scope](docs/mvp-scope.md) | What's in and out of scope |
+| [MVP Process](docs/mvp-process.md) | Phase plan, hosting readiness, and Personal HQ product framing |
 | [Architecture](docs/architecture.md) | System design and module boundaries |
 | [Decision Log](docs/decision-log.md) | Trade-off decisions and ADRs |
 | [Testing Strategy](docs/testing-strategy.md) | Quality gates and test approach |
